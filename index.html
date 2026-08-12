@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Card Magic Camera</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>🎩 Card Magic Camera</h1>
+    <p class="subtitle">
+      Start your camera, hold up a playing card, and watch it magically
+      transform into a different card for a few seconds.
+    </p>
+
+    <div class="stage">
+      <video id="video" playsinline autoplay muted></video>
+      <canvas id="output"></canvas>
+      <canvas id="proc" hidden></canvas>
+      <div id="placeholder" class="placeholder">Camera is off</div>
+    </div>
+
+    <div id="status" class="status">Loading detection engine…</div>
+
+    <div class="controls">
+      <button id="startBtn" disabled>▶️ Start Camera</button>
+      <button id="stopBtn" disabled>⏹️ Stop Camera</button>
+      <button id="demoBtn" disabled title="Manually trigger the effect, useful if lighting makes auto-detection unreliable">✨ Trigger Effect (demo)</button>
+    </div>
+
+    <details class="help">
+      <summary>How it works / tips</summary>
+      <ul>
+        <li>Everything runs locally in your browser — no video is uploaded anywhere.</li>
+        <li>Hold a playing card flat, filling a good chunk of the frame, against a plain background.</li>
+        <li>Good, even lighting with no glare helps detection a lot.</li>
+        <li>When a card-shaped rectangle is detected steadily for a moment, a different card is
+          overlaid on top of it for about 3 seconds, then the view returns to your normal camera feed.</li>
+        <li>If auto-detection isn't cooperating (e.g. bad lighting), use the "Trigger Effect (demo)"
+          button to see the reveal animation on demand.</li>
+      </ul>
+    </details>
+  </main>
+
+  <script async src="https://docs.opencv.org/4.9.0/opencv.js" onload="onOpenCvReady()"></script>
+  <script src="script.js"></script>
+</body>
+</html>
